@@ -4,7 +4,7 @@ metadata:
   name: mysql-data-pvc
 spec:
   resources:
-     request:
+     requests:
        storage: 5Gi
   accessModes:
   - ReadWriteMany
