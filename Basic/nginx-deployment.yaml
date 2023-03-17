@@ -5,7 +5,9 @@ metadata:
   labels:
     app:  nginx
 spec:
+  minReadySeconds: 30
   replicas: 2
+  revisionHistoryLimit: 100 #rollout revision maintain
   selector:
     matchLabels:
       app: nginx
