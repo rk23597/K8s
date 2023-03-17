@@ -1,0 +1,5 @@
+step 1) deploy the nginx image in the pod with the pod defination
+step 2) Expose this to a browser using 30010 with the service defination 
+
+please add the comments as well.... 
+

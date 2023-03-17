@@ -1,0 +1,19 @@
+# Service work - This directs the traffic to a pod.
+apiVersion: v1
+kind: Service
+metadata:
+  name: ngnix-svc
+spec:
+  selector:
+    app: ngnix
+  type: NodePort
+  ports:
+  - name: ngnix
+    protocol: TCP
+    port: 8080 #The port of this service
+    #This is the actual port on which your application is running inside the container
+    targetPort: http-nginx-svc # if you see in the pod defination i gave the container Name in container Spec
+    nodePort: 30010 # The port on the node where external traffic will come in on
+
+#Traffic comes in on nodePort, forwards to port on the service which then routes to targetPort on the pod(s).
+#Note - if targetPort is not set, it will default to the same value as port    
