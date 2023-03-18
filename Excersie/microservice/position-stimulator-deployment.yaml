@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name:  position-stimulator
-        image:  richardchesterwood/k8s-fleetman-position-stimulator:release1
+        image:  richardchesterwood/k8s-fleetman-position-simulator:release1
         env:
         - name: SPRPING_PROFILES_ACTIVE
           value: production-microservice
