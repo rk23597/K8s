@@ -18,5 +18,5 @@ spec:
       - name:  position-tracker
         image:  richardchesterwood/k8s-fleetman-position-tracker:release1-multi
         env:
-        - name: SPRPING_PROFILES_ACTIVE
+        - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
