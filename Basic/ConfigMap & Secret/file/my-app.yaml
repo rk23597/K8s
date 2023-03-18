@@ -17,7 +17,7 @@ spec:
       containers:
       - name:  my-app
         image:  busybox:1.28
-        command: ['sh','-c',"cat /mysql/db-config; cat /mysql/db-secret; sleep 20"]
+        command: ['sh','-c',"cat /mysql/db-config/mysql.conf; cat /mysql/db-secret/secret.file; sleep 20"]
         volumeMounts:
           - mountPath: /mysql/db-config
             name: db-config
