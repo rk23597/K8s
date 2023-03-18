@@ -8,5 +8,5 @@ spec:
   type: NodePort
   ports:
   - name: position-tracker-svc
-    port: 80 
+    port: 8080 
     nodePort: 30020
