@@ -21,12 +21,12 @@ spec:
         env:
         - name: MYSQL_USER
           valueFrom:
-            secretMapKeyRef:
+            secretKeyRef:
               name: myapp-secret
               key: username    
         - name: MYSQL_PASSWORD
           valueFrom:
-            secretMapKeyRef:
+            secretKeyRef:
               name: myapp-secret
               key: password                    
         - name: MYSQL_SERVER
