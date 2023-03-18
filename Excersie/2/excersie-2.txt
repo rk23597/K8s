@@ -6,3 +6,23 @@ please add the comments as well....
 
 Command - 
 
+-- cat /etc/resolv.conf
+go to the nginx container - 
+k exec -it pod nginx-pod sh
+and if the network config is there or not 
+-- cat /etc/resolv.conf
+try running mysql 
+if its not install in the container then install the mysql inside the container
+apk updateapk 
+add mysql-client
+now try to ping and connect to the sql from nginx pod container
+ mysql -h database -uroot -ppassword test
+ -h is host or IP of the mysql pod or we can give the servicename as well 
+ test is table name
+
+ try to create table now 
+ create table testtable (test varchar(50));
+ to see the table 
+ show tables;
+
+
