@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  position-stimulator-deployment
+  labels:
+    app:  position-stimulator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: position-stimulator
+  template:
+    metadata:
+      labels:
+        app:  position-stimulator
+    spec:
+      containers:
+      - name:  position-stimulator
+        image:  richardchesterwood/k8s-fleetman-position-stimulator:release1
+        env:
+        - name: SPRPING_PROFILES_ACTIVE
+          value: production-microservice

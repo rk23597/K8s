@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  queue-deployment
+  labels:
+    app:  queue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: queue
+  template:
+    metadata:
+      labels:
+        app:  queue
+    spec:
+      containers:
+      - name:  queue
+        image:  richardchesterwood/k8s-fleetman-queue:release1
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  position-stimulator-deployment
+  labels:
+    app:  position-stimulator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: position-stimulator
+  template:
+    metadata:
+      labels:
+        app:  position-stimulator
+    spec:
+      containers:
+      - name:  position-stimulator
+        image:  richardchesterwood/k8s-fleetman-position-stimulator:release1
+        env:
+        - name: SPRPING_PROFILES_ACTIVE
+          value: production-microservice
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  position-tracker-deployment
+  labels:
+    app:  position-tracker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: position-tracker
+  template:
+    metadata:
+      labels:
+        app:  position-tracker
+    spec:
+      containers:
+      - name:  position-tracker
+        image:  richardchesterwood/k8s-fleetman-position-tracker:release1
+        env:
+        - name: SPRPING_PROFILES_ACTIVE
+          value: production-microservice
