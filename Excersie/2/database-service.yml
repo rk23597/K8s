@@ -1,0 +1,11 @@
+# Service work - This directs the traffic to a pod.
+apiVersion: v1
+kind: Service
+metadata:
+  name: database
+spec:
+  selector:
+    app: mysql
+  type: ClusterIP
+  ports:
+    - port: 3306 #The port of this service

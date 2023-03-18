@@ -1,0 +1,8 @@
+step 1) Create Two Pod and deploy nginx and mySQL on these pod
+step 2) try to access the mySql connectity from nginx container which is in differnt pod
+Step 3) read more about /etc/resolv.conf 
+
+please add the comments as well.... 
+
+Command - 
+

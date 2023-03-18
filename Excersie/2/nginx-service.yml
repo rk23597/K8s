@@ -1,0 +1,14 @@
+# Service work - This directs the traffic to a pod.
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+spec:
+  selector:
+    app: nginx
+  type: ClusterIP
+  ports:
+  - name: nginx
+    protocol: TCP
+    port: 8080 
+    targetPort: http-nginx-svc 
