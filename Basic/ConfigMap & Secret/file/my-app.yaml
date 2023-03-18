@@ -30,5 +30,5 @@ spec:
             name: myapp-config-file
         - name:  db-secret
           secret:
-            name:  myapp-secret-file  
+            secretName:  myapp-secret-file  
           
