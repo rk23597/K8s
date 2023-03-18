@@ -1,69 +1,106 @@
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  queue-deployment
-  labels:
-    app:  queue
+  name: queue
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: queue
-  template:
+  replicas: 1
+  template: # template for the pods
     metadata:
       labels:
-        app:  queue
+        app: queue
     spec:
       containers:
-      - name:  queue
-        image:  richardchesterwood/k8s-fleetman-queue:release1
-
+      - name: queue
+        image: richardchesterwood/k8s-fleetman-queue:release2
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  position-stimulator-deployment
-  labels:
-    app:  position-stimulator
+  name: position-simulator
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: position-stimulator
-  template:
+      app: position-simulator
+  replicas: 1
+  template: # template for the pods
     metadata:
       labels:
-        app:  position-stimulator
+        app: position-simulator
     spec:
       containers:
-      - name:  position-stimulator
-        image:  richardchesterwood/k8s-fleetman-position-stimulator:release1
+      - name: position-simulator
+        image: richardchesterwood/k8s-fleetman-position-simulator:release2
         env:
-        - name: SPRPING_PROFILES_ACTIVE
+        - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
 
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  position-tracker-deployment
-  labels:
-    app:  position-tracker
+  name: position-tracker
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: position-tracker
-  template:
+  replicas: 1
+  template: # template for the pods
     metadata:
       labels:
-        app:  position-tracker
+        app: position-tracker
     spec:
       containers:
-      - name:  position-tracker
-        image:  richardchesterwood/k8s-fleetman-position-tracker:release1
+      - name: position-tracker
+        image: richardchesterwood/k8s-fleetman-position-tracker:release2
         env:
-        - name: SPRPING_PROFILES_ACTIVE
+        - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+spec:
+  selector:
+    matchLabels:
+      app: api-gateway
+  replicas: 1
+  template: # template for the pods
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+      - name: api-gateway
+        image: richardchesterwood/k8s-fleetman-api-gateway:release2
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: production-microservice
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  selector:
+    matchLabels:
+      app: webapp
+  replicas: 1
+  template: # template for the pods
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: richardchesterwood/k8s-fleetman-webapp-angular:release2
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: production-microservice
+
+        
