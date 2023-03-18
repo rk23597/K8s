@@ -17,7 +17,7 @@ spec:
       containers:
       - name:  my-app
         image:  busybox:1.28
-        command: ['sh','-c','printenv MYSQL_USER MYSQL_PASSWORD MYSQL_SERVER']
+        command: ['sh','-c',"printenv MYSQL_USER MYSQL_PASSWORD MYSQL_SERVER"]
         env:
         - name: MYSQL_USER
           valueFrom:
