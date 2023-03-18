@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name:  position-stimulator-deployment
-  labels:
-    app:  position-stimulator
 spec:
   replicas: 1
   selector:
