@@ -1,0 +1,3 @@
+Create a  new pod called admin-pod with image busybox. allow the pod to be able to set system_time.
+
+the container should sleep for 3200 seconds

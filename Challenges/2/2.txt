@@ -1,0 +1,5 @@
+A kubeconfig file called test.kubeconfig has been create in /root/TEST. 
+
+There is something wworng with the configuration
+
+troubleshoot and fix it 
