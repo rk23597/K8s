@@ -1,0 +1,29 @@
+commonly install acros master and worker node
+1- container runtime
+2- kubelet
+3- kube-proxy
+
+
+only on control plane config
+1- api
+2- scheduler
+3- control manager
+4- etcd
+
+kubeadm init command do the following work for us- 
+1) preflight - checking necessarory validation & also insalling some images
+2) certificats - generating certs for internal communication
+     folder - /etc/kubernetes/pki
+3) kubeconfig - 
+     folder - /etc/kubernetes
+     files - admin.config
+	   - kubelet.config
+           -control-manager.config
+           -scheduler.config
+4) kubelet start - wriitng the kubelet setting and restarting the kubelet
+   folder - /var/lib/kubelet/config.yaml
+5) setting up the control plane
+    - generating the static pod manifest for the API server , controller-manager and schedular
+-- into /etc/kubernetes/manifests directory
+- kubelet watches this directory for pod to create on startup
+ -- etcd.yaml , kube-apiserver.yaml , kube-controller , kube-schedular.yaml

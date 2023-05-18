@@ -1,0 +1,25 @@
+1) sudo swapoff - a
+2) open the required ports on firawall
+3) install containerd
+4) install kubelet kubeadm kubectl
+5) do kubeadm init - only for control plane as we are making that node to be master
+
+after that init command we can execute the below command
+
+kubectl get node 
+but this will give error as we didn't configured or setup the enviromant variable for the admin.conf so just to check node status execute the below command 
+sudo kubectl get node --kubeconfig /etc/kubernetes/admin.conf
+
+6) configure the --kubeconfig /etc/kubernetes/admin.conf so we dont need to type this path again and again only for master node
+
+mkdir -p ~/.kube
+sudo cp -i /etc/kubernetes/admin.conf ~/.kube/config
+ls -l ~/.kube/config
+sudo chown $(id -u):$(id -g) ~/.kube/config
+
+
+7) install the weavenet 
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+8) add node
+kubeadm token create --print-join-command
