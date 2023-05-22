@@ -1,0 +1,33 @@
+Configuring applications comprises of understanding the following concepts:
+
+Configuring Command and Arguments on applications
+Configuring Environment Variables
+Configuring Secrets
+
+-- env & envFrom
+
+ env:
+   - name: USERNAME
+     valueFrom:
+       configMapKeyRef:
+          name: myconfig
+          key: username
+
+envFrom:
+      envFrom:
+       - secretRef:
+           name: mysecret
+
+volumeMounts:
+      - name: config
+        mountPath: "/config"
+        readOnly: true
+volumes:
+  - name: config
+    configMap:
+      name: game-demo
+      items:
+      - key: "game.properties"
+        path: "game.properties"
+      - key: "user-interface.properties"
+        path: "user-interface.properties"

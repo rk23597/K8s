@@ -1,3 +1,5 @@
 1) NodeName 
 2) NodeSelector - using lable & selector
 3) Taints & Tolerations
+4) Node Affinity
+5) Inter-pod affinity and anti-affinity

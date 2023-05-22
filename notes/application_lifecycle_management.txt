@@ -1,0 +1,19 @@
+Rolling updates & Rollback
+
+Key Point to remember
+
+Deployment Strategy - 
+1- Recreate - it will first down all the pod and start recreating and there will be downtime
+2- Rolling update - ( default ) there will be no downtime if we are going with rolling update
+
+to check the rollout status - 
+
+kubectl rollout status deployment/myapp-deployment
+
+TO rollback -
+
+kubectl rollout undo  deployment/myapp-deployment 
+
+to see the histroy of deployment 
+
+kubectl rollout history  deployment/myapp-deployment 

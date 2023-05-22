@@ -1,0 +1,1 @@
+for monitoring we can use matrix service to inspect the cpu and memory uses of node and pod
