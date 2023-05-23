@@ -1,0 +1,36 @@
+The correct order is Pod to PVC to PV. Let's break down the relationship between these components:
+
+Persistent Volume (PV): A Persistent Volume represents a physical storage resource in Kubernetes. It is provisioned by an administrator or dynamically provisioned using a storage class. PVs are created independently of Pods.
+
+Persistent Volume Claim (PVC): A Persistent Volume Claim is a request for storage made by a Pod. It specifies the required capacity, access mode, and other attributes. PVCs provide a way for Pods to consume storage without knowing the underlying implementation details. When a PVC is created, Kubernetes attempts to bind it to an available PV that satisfies the requested attributes.
+
+Pod: A Pod is the smallest and most basic unit in Kubernetes. It can contain one or more containers that are scheduled and deployed together. Within a Pod, you can define volumes to provide storage for your containers. These volumes can be backed by PVCs or directly referenced PVs.
+
+To summarize the relationship, a Pod can consume storage through a PVC, which requests a specific amount of storage with desired attributes. The PVC then binds to an available PV that satisfies the requirements. The Pod can either directly reference the PV or use the PVC to mount the requested storage. This allows for dynamic provisioning, abstraction of storage details, and better management of persistent storage in Kubernetes.
+
+
+--------------
+Reclaim policy has two options - 
+1) Retain: With the "Retain" reclaim policy, the PV and its associated storage resources are preserved even after the PV is released or deleted. This means that the storage is not automatically deleted or modified. It is the responsibility of the administrator to manually reclaim or clean up the storage resources
+
+2) Delete: The "Delete" reclaim policy instructs Kubernetes to automatically delete the associated storage resources when the PV is released or deleted. This policy allows Kubernetes to handle the cleanup of the storage, ensuring that the underlying resources are properly removed. Once the PV is deleted, the associated storage resources are permanently deleted as well.
+
+-----------------------------
+Note - 
+
+1) If a Persistent Volume Claim (PVC) is bound to a Persistent Volume (PV), you generally cannot delete the PV directly while the PVC is still bound. Kubernetes enforces this constraint to maintain the integrity of the storage allocation.
+
+---------------------
+
+Storage Class :
+
+The flow for using a StorageClass in Kubernetes can be summarized as follows:
+
+Pod -> PVC -> PV -> StorageClass
+
+default - delete - reclaim policy
+
+Volume Binding Mode 
+    1) Immediate 
+    2) WaitForFirstConsumer 
+

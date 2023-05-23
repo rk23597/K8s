@@ -1,0 +1,42 @@
+1) We use Containerd as our container runtime. What is the interface/bridge created by Containerd on the controlplane node?
+Ans - Run the command: ip link and look for a bridge interface created by containerd.
+
+2) If you were to ping google from the controlplane node, which route does it take? What is the IP address of the Default Gateway?
+Ans - ip route show default
+
+3) Notice that ETCD is listening on two ports. Which of these have more client connections established?
+
+  netstat -anp | grep etcd
+  netstat -anp | grep etcd | grep 2380 | wc -l 
+  netstat -anp | grep etcd | grep 2379 | wc -l
+
+4) What network range are the nodes in the cluster part of?
+Ans - ip addr and see eth0 for nodes network rang
+
+5) What is the range of IP addresses configured for PODs on this cluster?
+Ans - The network is configured with weave. Check the weave pods logs using the command kubectl logs <weave-pod-name> weave -n kube-system 
+      and look for ipalloc-range
+
+
+6) What is the IP Range configured for the services within the cluster?
+Ans- cat /etc/kubernetes/manifests/kube-apiserver.yaml | grep cluster-ip-range
+
+7) Identify the DNS solution implemented in this cluster.
+Ans - coredns
+
+8) Where is the configuration file located for configuring the CoreDNS service?
+Ans - see the container arguments - /etc/coredns/Corefile
+
+9) How is the Corefile passed into the CoreDNS POD?
+Ans- kubectl get configmap -n kube-system
+
+10) What is the root domain/zone configured for this kubernetes cluster?
+Ans - kubectl describe configmap coredns -n kube-system
+
+
+
+
+
+
+
+
