@@ -1,0 +1,46 @@
+Step 1) 
+ 
+ apt-mark unhold kubeadm && \
+ apt-get update && apt-get install -y kubeadm=1.26.0-00 && \
+ apt-mark hold kubeadm
+
+Step 2) Verify that the download works and has the expected version
+
+ kubeadm version
+
+Step 3) Verify the upgrade plan:
+
+kubeadm upgrade plan
+
+Step 4) Choose a version to upgrade to, and run the appropriate command. For example:
+
+sudo kubeadm upgrade apply v1.26.x
+
+Note - after successfull upgradation you can do k get node but you will still see the older verions beacuase we havn't upgraded the kubelet & kubectl yet 
+
+so to upgrade the kubelet - we need to drain the node so that new pod will not scheduled ...
+
+Step 5 ) 
+
+kubectl drain controlplane --ignore-daemonsets
+
+Step 6 ) Upgrade kubelet and kubectl 
+apt-mark unhold kubelet kubectl && \
+apt-get update && apt-get install -y kubelet=1.26.x-00 kubectl=1.26.x-00 && \
+apt-mark hold kubelet kubectl
+
+Step 7 ) Restart the kubelet:
+
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet
+
+step 8 ) Uncordon the node 
+kubectl uncordon controlplane 
+
+
+---------------------------
+
+Upgrade worker nodes 
+---------------------------
+
+

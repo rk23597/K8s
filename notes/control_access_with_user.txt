@@ -1,0 +1,10 @@
+
+--> create user and it's certificates
+ 
+
+certificate steps - 
+1) create private cert for user -  openssl genrsa -out  rakesh.key 2048
+2) generate the csr with CN (CN is going to use to validate the user )- openssl req -new -key rakesh.key -subj "/CN=rakesh" -out rakesh.csr
+3) ask K8s to approve the csr - go to k8s docs and seach for certificatesigningrequest
+4) create
+
